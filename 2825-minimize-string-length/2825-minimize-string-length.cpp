@@ -6,10 +6,7 @@ public:
         for (char c : s) {
             unique.insert(c);
         }
-        for(char ch : unique)
-        {
-            ans++;
-        }
-        return ans;
+
+        return unique.size();
     }
 };
