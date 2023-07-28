@@ -8,11 +8,7 @@ public:
             {
                 temp += s[i];
             }
-            else if(s[i] == 'B' && temp.back() == 'A')
-            {
-                temp.pop_back();
-            }
-            else if(s[i] == 'D' && temp.back() == 'C')
+            else if(s[i] == 'B' && temp.back() == 'A' || s[i] == 'D' && temp.back() == 'C')
             {
                 temp.pop_back();
             }
