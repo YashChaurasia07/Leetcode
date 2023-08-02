@@ -1,44 +1,87 @@
-// class Solution {
-// public:
-//     string reverseWords(string s) {
-//         vector<string> v;
-//         for(int i = 0; i<s.length();i++)
-//         {
-//             string temp;
-//             if(s[i] == ' ' && temp.size() != 0)
-//             {
-//                 v.push_back(temp);
-//                 temp = ' '
-//             }
-//             else if(s[i] !=' ')
-//             {
-//                 temp+=s[i];
-//             }
-//         }
-//         reverse(v.begin(),v.end());
-
-//     }
-// };
-
 class Solution {
 public:
-    string reverseWords(string str) {
-        stringstream s(str);
-        string word;
-        vector<string>temp;
-        string ans="";
+    string reverseWords(string s) {
+        // string temp="";
+        // vector<string> v;
+        // int i = 0;
+        // for(;i<s.length();i++)
+        // {
+        //     if(s[i]== ' ')
+        //     {
+        //        i++; 
+        //     }
+        //     else{
+        //         break;
+        //     }
+        // }
+        // for(; i<s.length();i++)
+        // {
+        //     if(s[i] == ' ')
+        //     {
+        //         v.push_back(temp);
+        //         temp ="";
+        //     }
+        //     else if(s[i] >= 'a' || s[i]<='z' || s[i] >= 'A' || s[i]<='Z')
+        //     {
+        //         temp += s[i];
+        //     }
+        // }
+        // if(!(temp == ""))
+        // {
+        //     v.push_back(temp);
+        // }
+        // int n = v.size()-1;
+        // reverse(v.begin(),v.end());
+        // string y = "";
+        // for(int i =0;i<v.size();i++)
+        // {
+        //     if(i==v.size()-1)
+        //     {
+        //         y = y + v[i];
+        //     }
+        //     else{
+        //         y = y + v[i] +" ";
+        //     }
+        // }
+        // return y;
 
-        while(s>>word){
-            temp.push_back(word);
+
+        string temp = "";
+    vector<string> v;
+
+    int i = 0;
+    while (i < s.length()) {
+        // Skip leading whitespaces
+        while (i < s.length() && s[i] == ' ') {
+            i++;
+        }
+        
+        // Extract word
+        while (i < s.length() && s[i] != ' ') {
+            temp += s[i];
+            i++;
         }
 
-        for(int i=temp.size()-1;i>=0;i--){
-            if(i!=0)
-            ans+=temp[i]+" ";
-            else
-                ans+=temp[i];
-
+        // Push the extracted word into the vector
+        if (!temp.empty()) {
+            v.push_back(temp);
+            temp = "";
         }
-        return ans;
+    }
+
+    // Reverse the vector containing words
+    reverse(v.begin(), v.end());
+
+    // Join the words with a space and form the output string
+    string y = "";
+    for (int i = 0; i < v.size(); i++) {
+        if (i == v.size() - 1) {
+            y = y + v[i];
+        } else {
+            y = y + v[i] + " ";
+        }
+    }
+    
+    return y;
     }
 };
