@@ -1,14 +1,6 @@
 class Solution {
 public:
     int accountBalanceAfterPurchase(int purchaseAmount) {
-        int m = purchaseAmount%10;
-        if(m>=5)
-        {
-            purchaseAmount += 10 - m;
-        }
-        else{
-            purchaseAmount -= m;
-        }
-        return 100 - purchaseAmount;
+        return 100 - (purchaseAmount + 5) / 10 * 10;
     }
 };
