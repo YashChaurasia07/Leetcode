@@ -1,12 +1,13 @@
 class Solution {
 public:
     int furthestDistanceFromOrigin(string s) {
-        int c1=0,c2=0;
-        for(auto i: s){
-            if(i=='L'){c1--; c2--;}
-            else if(i=='_'){c1--; c2++;}
-            else if(i=='R'){c1++; c2++ ;}
+        int count = 0;int u = 0;
+        for(int i=0;i<s.length();i++){
+            if(s[i] =='L') count--;
+            else if(s[i] == 'R') count++;
+            else u++;
         }
-        return max(abs(c2),abs(c1));
+        if(count<0) count *= -1; 
+        return u+count;
     }
 };
