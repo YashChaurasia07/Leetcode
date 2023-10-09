@@ -1,38 +1,47 @@
 class Solution {
 public:
-    vector<int> searchRange(vector<int>& nums, int k) {
-        int s = 0, e = nums.size()-1, mid = s + (e-s)/2, ans = -1, ans2 = -1;
-        vector<int> v;
-        while(s<=e){
-            if(nums[mid] == k){
+    int lowerBound(vector<int>& nums, int target)
+    {
+        int s = 0;
+        int e = nums.size()-1;
+        int mid = s + (e-s)/2;
+        int ans = -1;
+        while(s<=e)
+        {
+            mid = s + (e-s)/2;
+            if(nums[mid]<target) s = mid+1;
+            else if(nums[mid]>target) e = mid-1;
+            else if(nums[mid] == target)
+            {
                 ans = mid;
-                e = mid -1;   
+                e = mid -1;
             }
-            else if( nums[mid]>k){
-                e = mid - 1;
-            }
-            else{
-                s = mid + 1;
-            }
-            mid = s + (e-s)/2;
+            else return mid;
         }
-        s = 0; e = nums.size()-1; mid = s + (e-s)/2;
-        while(s<=e){
-            if(nums[mid] == k){
-                ans2 = mid;
-                s = mid + 1;   
-            }
-            else if( nums[mid]>k){
-                e = mid - 1;
-            }
-            else{
-                s = mid + 1;
-            }
+        return ans;
+    }
+    int upperBound(vector<int>& nums, int target)
+    {
+        int s = 0;
+        int e = nums.size()-1;
+        int mid = s + (e-s)/2;
+        int ans= -1;
+        while(s<=e)
+        {
             mid = s + (e-s)/2;
+            if(nums[mid]<target) s = mid+1;
+            else if(nums[mid]>target) e = mid-1;
+            else if(nums[mid] == target)
+            {
+                ans = mid;
+                s = mid +1;
+            }
         }
-        v.push_back(ans);
-        v.push_back(ans2);
-        return v;
-
+        return ans;
+    }
+    vector<int> searchRange(vector<int>& nums, int target) {
+        int lower = lowerBound(nums,target);
+        int upper = upperBound(nums,target);
+        return {lower,upper};
     }
 };
